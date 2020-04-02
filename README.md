@@ -1,7 +1,7 @@
 # MLA
 ## Introduction
 
-MLA(Machine Learning of Amorphous) project will collect and classify latest works with ML(Machine Learning) scheme on amorphous study,especially for the potential calculation .This project includes three main parts `collections`, `examples` and `tools` 
+*MLA(Machine Learning of Amorphous) project will collect and classify latest works with ML(Machine Learning) scheme on amorphous study,especially for the potential calculation .This project includes three main parts `collections`, `examples` and `tools` 
 
 ### Collections
 
