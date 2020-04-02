@@ -1,0 +1,59 @@
+#!/usr/bin/env python
+
+from __future__ import print_function, division
+
+import argparse
+
+from ase.io import read
+
+
+def write_xsf(fname, atoms):
+    with open(fname, 'w') as xsf:
+        o = xsf.write
+        total_energy = atoms.get_potential_energy(force_consistent=False)
+        o("# total energy = {:.8f} eV\n\n".format(total_energy))
+        o("CRYSTAL\nPRIMVEC\n")
+        cell = atoms.cell
+        o("{:12.8f} {:12.8f} {:12.8f}\n".format(cell[0, 0], cell[0, 1], cell[0, 2]))
+        o("{:12.8f} {:12.8f} {:12.8f}\n".format(cell[1, 0], cell[1, 1], cell[1, 2]))
+        o("{:12.8f} {:12.8f} {:12.8f}\n".format(cell[2, 0], cell[2, 1], cell[2, 2]))
+        o("PRIMCOORD\n")
+        n = len(atoms)
+        o("{} {}\n".format(n, 1))
+        # Positions and forces in cartesian coordinatesi.
+        # Note: force are in eV/AA to be consistent with energy unit.
+        forces = atoms.get_forces()
+        for a in atoms:
+            frc = forces[a.index]
+            o("{} {:12.8f} {:12.8f} {:12.8f} ".format(a.symbol, a.x, a.y, a.z))
+            o("{:12.8f} {:12.8f} {:12.8f}\n".format(frc[0], frc[1], frc[2]))
+
+
+def xml2xsfs(xmlfile, prefix="struct", nevery=1, base=0):
+    images = read(xmlfile, format="vasp-xml",
+                 index=slice(0, None, nevery))
+    for i, image in enumerate(images):
+        fname = "{}{:05d}.xsf".format(prefix, base + i)
+        write_xsf(fname, image)
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Convert vasprun.xml to xsf files."
+    )
+
+    addarg = parser.add_argument
+
+    addarg("xml", metavar="XML", type=str, help="Path to the vasprun.xml.")
+    addarg("-n", "--nevery", default=1, type=int, help="Write xsf file every this many steps.")
+    addarg("-s", "--startswith", default=0, type=int, help="Base number of xsf numbering.")
+    addarg("--prefix", default="struct_", type=str, help="Prefix of xsf outputs.")
+
+    args = parser.parse_args()
+
+    xml2xsfs(args.xml, args.prefix, args.nevery, args.startswith)
+
+
+if __name__ == "__main__":
+    main()
+

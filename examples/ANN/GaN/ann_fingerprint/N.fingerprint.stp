@@ -1,0 +1,57 @@
+DESCR
+  Structural fingerprint setup for Ga in GaN
+  Ref.: Imbalzano et al., J. Chem. Phys. (2018)
+END DESCR
+
+ATOM N
+ENV  2
+Ga
+N
+
+RMIN 0.75d0
+SYMMFUNC type=Behler2011
+44
+G=2 type2=Ga  eta=0.001000  Rs=0.000000  Rc=6.500000
+G=2 type2=Ga  eta=0.024453  Rs=0.000000  Rc=6.500000
+G=2 type2=Ga  eta=0.055178  Rs=0.000000  Rc=6.500000
+G=2 type2=Ga  eta=0.097069  Rs=0.000000  Rc=6.500000
+G=2 type2=Ga  eta=0.156749  Rs=0.000000  Rc=6.500000
+G=2 type2=Ga  eta=0.246226  Rs=0.000000  Rc=6.500000
+G=2 type2=Ga  eta=0.389121  Rs=0.000000  Rc=6.500000
+G=2 type2=Ga  eta=0.637102  Rs=0.000000  Rc=6.500000
+G=2 type2=Ga  eta=1.121227  Rs=0.000000  Rc=6.500000
+G=2 type2=Ga  eta=2.257276  Rs=0.000000  Rc=6.500000
+G=2 type2=N   eta=0.001000  Rs=0.000000  Rc=6.500000
+G=2 type2=N   eta=0.024453  Rs=0.000000  Rc=6.500000
+G=2 type2=N   eta=0.055178  Rs=0.000000  Rc=6.500000
+G=2 type2=N   eta=0.097069  Rs=0.000000  Rc=6.500000
+G=2 type2=N   eta=0.156749  Rs=0.000000  Rc=6.500000
+G=2 type2=N   eta=0.246226  Rs=0.000000  Rc=6.500000
+G=2 type2=N   eta=0.389121  Rs=0.000000  Rc=6.500000
+G=2 type2=N   eta=0.637102  Rs=0.000000  Rc=6.500000
+G=2 type2=N   eta=1.121227  Rs=0.000000  Rc=6.500000
+G=2 type2=N   eta=2.257276  Rs=0.000000  Rc=6.500000
+G=4 type2=Ga type3=N    eta=0.001000  lambda= -1.000000  zeta= 4.000000  Rc=6.5000000
+G=4 type2=Ga type3=N    eta=0.001000  lambda= 1.000000   zeta= 4.000000  Rc=6.5000000
+G=4 type2=N  type3=N    eta=0.001000  lambda= -1.000000  zeta= 4.000000  Rc=6.5000000
+G=4 type2=N  type3=N    eta=0.001000  lambda= 1.000000   zeta= 4.000000  Rc=6.5000000
+G=4 type2=Ga type3=Ga   eta=0.001000  lambda= -1.000000  zeta= 4.000000  Rc=6.5000000
+G=4 type2=Ga type3=Ga   eta=0.001000  lambda= 1.000000   zeta= 4.000000  Rc=6.5000000
+G=4 type2=Ga type3=N    eta=0.020458  lambda= -1.000000  zeta= 4.000000  Rc=6.5000000
+G=4 type2=Ga type3=N    eta=0.020458  lambda= 1.000000   zeta= 4.000000  Rc=6.5000000
+G=4 type2=Ga type3=Ga   eta=0.020458  lambda= -1.000000  zeta= 4.000000  Rc=6.5000000
+G=4 type2=Ga type3=Ga   eta=0.020458  lambda= 1.000000   zeta= 4.000000  Rc=6.5000000
+G=4 type2=N  type3=N    eta=0.020458  lambda= -1.000000  zeta= 4.000000  Rc=6.5000000
+G=4 type2=N  type3=N    eta=0.020458  lambda= 1.000000   zeta= 4.000000  Rc=6.5000000
+G=4 type2=Ga type3=Ga   eta=0.036371  lambda= -1.000000  zeta= 4.000000  Rc=6.5000000
+G=4 type2=Ga type3=Ga   eta=0.036371  lambda= 1.000000   zeta= 4.000000  Rc=6.5000000
+G=4 type2=Ga type3=N    eta=0.036371  lambda= -1.000000  zeta= 4.000000  Rc=6.5000000
+G=4 type2=Ga type3=N    eta=0.036371  lambda= 1.000000   zeta= 4.000000  Rc=6.5000000
+G=4 type2=N  type3=N    eta=0.036371  lambda= -1.000000  zeta= 4.000000  Rc=6.5000000
+G=4 type2=N  type3=N    eta=0.036371  lambda= 1.000000   zeta= 4.000000  Rc=6.5000000
+G=4 type2=Ga type3=N    eta=0.050000  lambda= -1.000000  zeta= 4.000000  Rc=6.5000000
+G=4 type2=Ga type3=N    eta=0.050000  lambda= 1.000000   zeta= 4.000000  Rc=6.5000000
+G=4 type2=N  type3=N    eta=0.050000  lambda= 1.000000   zeta= 4.000000  Rc=6.5000000
+G=4 type2=N  type3=N    eta=0.050000  lambda= -1.000000  zeta= 4.000000  Rc=6.5000000
+G=4 type2=Ga type3=Ga   eta=0.050000  lambda= -1.000000  zeta= 4.000000  Rc=6.5000000
+G=4 type2=Ga type3=Ga   eta=0.050000  lambda= 1.000000   zeta= 4.000000  Rc=6.5000000
