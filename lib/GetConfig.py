@@ -5,6 +5,7 @@ from pymatgen import MPRester
 from itertools import combinations as cb
 import os
 import copy
+import argparse
 
 
 class GetConfig:
@@ -23,10 +24,11 @@ class GetConfig:
     def get_structure_list(self, *args):
         structures = []       
         # single-element
-        for symbol in self.symbols:
-            sg_structures = self.m.get_structures(symbol)
-            self.filenames.extend(_getFileNameFromList(len(sg_structures),symbol))
-            structures.extend(sg_structures)        
+        if not args[0]:
+            for symbol in self.symbols:
+                sg_structures = self.m.get_structures(symbol)
+                self.filenames.extend(_getFileNameFromList(len(sg_structures),symbol))
+                structures.extend(sg_structures)
         # compound
         if len(self.symbols) > 1:
             for i in range(len(self.symbols)):
@@ -34,7 +36,6 @@ class GetConfig:
                     i_combs = list(cb(self.symbols,i+1))
                     for index,comb in enumerate(i_combs):
                         chem_str = '-'.join(list(comb))
-                        print(chem_str)
                         cp_structures = self.m.get_structures(chem_str)
                         self.filenames.extend(_getFileNameFromList(len(cp_structures),chem_str))
                         structures.extend(cp_structures)                      
@@ -52,6 +53,7 @@ def mkEmptyDir(path):
     pathcopy = copy.copy(path)       
     if not os.path.exists(path):
         os.mkdir(path)
+        print('Files will be stored at %r'%path)
         return path
     else:
         ic = 1
@@ -59,15 +61,23 @@ def mkEmptyDir(path):
             pathcopy = path+'(%i)'%ic
             ic += 1
         os.mkdir(pathcopy)
+        print('Files will be stored at %r'%path)
         return pathcopy
     
                         
 if __name__ == "__main__":
-    symbols = ['Cu','Zr']
+    parser = argparse.ArgumentParser(
+            description="""Get original structures from Materials Project""",
+            formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument('--symbols','-s',required=True,nargs='+',help='Arguments for elements. e.g., python GetConfig.py -s Cu Zr')
+    parser.add_argument('--onlycompound','-oc',action='store_true',help='With this flag,the code only gets structures of compounds')
+    args = parser.parse_args()
+    symbols = args.symbols
+    oc_flag = args.onlycompound    
     path = os.getcwd()+'/'+''.join(symbols)
     newpath = mkEmptyDir(path)
     InitialConfig = GetConfig(symbols)
-    structures = InitialConfig.get_structure_list()
+    structures = InitialConfig.get_structure_list(oc_flag)
     InitialConfig.write_to(structures,newpath)
     
     
